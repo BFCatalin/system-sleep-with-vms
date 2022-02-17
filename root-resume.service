@@ -4,7 +4,7 @@ After=suspend.target
 
 [Service]
 Type=simple
-ExecStart=-virsh -c qemu:///system list --all | awk '{if ($3 == "paused") { print $2 } }' | xargs virsh -c qemu:///system resume
+ExecStart=/usr/bin/system-sleep-resume-suspended
 
 [Install]
 WantedBy=suspend.target

@@ -1,0 +1,3 @@
+#! /bin/bash
+
+virsh -c qemu:///system list --all | awk '{if ($3 == "paused") { print $2 } }' | xargs virsh -c qemu:///system resume

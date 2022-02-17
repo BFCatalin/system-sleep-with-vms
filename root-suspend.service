@@ -4,7 +4,7 @@ Before=sleep.target
 
 [Service]
 Type=simple
-ExecStart=-virsh -c qemu:///system list --all | awk '{if ($3 == "running") { print $2 } }' | xargs virsh -c qemu:///system suspend
+ExecStart=/usr/bin/system-sleep-suspend-running
 
 [Install]
 WantedBy=sleep.target

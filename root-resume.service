@@ -1,0 +1,10 @@
+[Unit]
+Description=Resume qemu quests after system host resume
+After=suspend.target
+
+[Service]
+Type=simple
+ExecStart=-virsh -c qemu:///system list --all | awk '{if ($3 == "paused") { print $2 } }' | xargs virsh -c qemu:///system resume
+
+[Install]
+WantedBy=suspend.target

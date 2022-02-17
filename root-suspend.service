@@ -1,0 +1,10 @@
+[Unit]
+Description=Suspend qemu quests before system resume
+Before=sleep.target
+
+[Service]
+Type=simple
+ExecStart=-virsh -c qemu:///system list --all | awk '{if ($3 == "running") { print $2 } }' | xargs virsh -c qemu:///system suspend
+
+[Install]
+WantedBy=sleep.target
